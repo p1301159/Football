@@ -22,6 +22,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 /**
@@ -36,17 +37,17 @@ public class Vue_Pays extends Abstractpano implements ActionListener{
     private ArrayList<JButton> button;
     private MesRequetes req;
     private int nbButton=0;
-    private MaFenetre fen;
+    //private MaFenetre fen;
     
     public Vue_Pays(MaFenetre f) {
-        this.fen=f;
-       this.setPreferredSize(new Dimension(400, 200));
-       this.setLayout(new GridBagLayout());
-       cont.fill=GridBagConstraints.HORIZONTAL;
-       button=new ArrayList<>();
-       req=new MesRequetes();
-       init();
-    }    
+        this.fen = f;
+        this.setPreferredSize(new Dimension(400, 400));
+        this.setLayout(new GridBagLayout());
+        cont.fill = GridBagConstraints.HORIZONTAL;
+        button = new ArrayList<>();
+        req = new MesRequetes();
+        init();
+    } 
     
     @Override
     public void init(){
@@ -66,7 +67,9 @@ public class Vue_Pays extends Abstractpano implements ActionListener{
         for (int i = 1; i < button.size()+1; i++) {
             cont.gridx = 2;
             cont.gridy = i;
+            
             this.add(button.get(i-1), cont);
+            button.get(i-1).addActionListener(this);
         }
         
         cont.gridx=2;
@@ -78,12 +81,18 @@ public class Vue_Pays extends Abstractpano implements ActionListener{
         for(int i=0;i<req.getPays().size();i++){
             button.add(new JButton(req.getPays().get(i).getNom()));
         }
+        //this.setPreferredSize(new Dimension(Integer.parseInt(Double.toString(this.getPreferredSize().getWidth())),Integer.parseInt(Double.toString(this.getPreferredSize().getHeight()+20))));
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==add){
             fen.setAbspano(new Vue_NewPays(fen));
+            fen.setContentPane(fen.getAbspano());
+            fen.pack();
+        }
+        if(e.getSource() == button.get(button.indexOf(e.getSource()))){
+            fen.setAbspano(new Vue_InfoPays(fen,button.get(button.indexOf(e.getSource())).getText()));
             fen.setContentPane(fen.getAbspano());
             fen.pack();
         }

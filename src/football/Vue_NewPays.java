@@ -34,7 +34,7 @@ public class Vue_NewPays extends Abstractpano implements ActionListener{
     private JTextField tf;
     private MesRequetes req;
     private GridBagConstraints cont;
-    private MaFenetre fen;
+    //private MaFenetre fen;
 
     public Vue_NewPays(MaFenetre f) {
         this.fen=f;
@@ -71,22 +71,9 @@ public class Vue_NewPays extends Abstractpano implements ActionListener{
         cont.gridwidth=2;
         this.add(tf,cont);
         
-        /*cont.gridx=0;
-        cont.gridy=1;
-        cont.gridwidth=1;
-        this.add(coupe,cont);*/
-        
         cont.gridx=2;
         cont.gridy=1;
         this.add(ligue,cont);
-        
-        /*cont.gridx=0;
-        cont.gridy=2;
-        this.add(ch1,cont);
-        
-        cont.gridx=2;
-        cont.gridy=2;
-        this.add(ch2,cont);*/
         
         cont.gridx=1;
         cont.gridy=3;
@@ -96,7 +83,7 @@ public class Vue_NewPays extends Abstractpano implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==creer){
-            req.ajoutPays(tf.getText(), ligue.getText());
+            req.ajoutPays(tf.getText(), ligue.isSelected());
             fen.setAbspano(new Vue_Pays(fen));
             fen.setContentPane(fen.getAbspano());
             fen.pack();

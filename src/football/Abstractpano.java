@@ -12,5 +12,6 @@ import javax.swing.JPanel;
  * @author Ange
  */
 public abstract class Abstractpano extends JPanel{
+    protected MaFenetre fen;
     public abstract void init();
 }

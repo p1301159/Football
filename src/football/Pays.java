@@ -24,6 +24,4 @@ public class Pays {
     public boolean isCoupe() {
         return coupe;
     }
-    
-    
 }

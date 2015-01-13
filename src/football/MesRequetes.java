@@ -35,9 +35,7 @@ public class MesRequetes{
         }
     }
     
-    
-    
-    public String ajoutPays(String nom,String bool) {
+    public String ajoutPays(String nom,boolean bool) {
         try {
             ArrayList<Integer> list = new ArrayList();
             Statement st = ConnexionBD.getConnexion().createStatement();

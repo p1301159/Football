@@ -21,19 +21,19 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author p1301159
  */
-public class MaFenetre extends JFrame {
+public class MaFenetre extends JFrame implements ActionListener{
     private GridBagConstraints cont; 
     private Abstractpano abspano;
     private Vue_NewPays vnp;
     private JMenuBar menuBar;
-    private JMenu mi;
+    private JMenuItem mi;
     private JMenu menu;
-    private JMenuItem pays[];
     
     public MaFenetre() {
        this.setTitle("Football");
@@ -45,7 +45,8 @@ public class MaFenetre extends JFrame {
     public void init(){        
         menuBar=new JMenuBar();
         menu=new JMenu("Ficher");
-        mi=new JMenu("Pays");
+        mi=new JMenuItem("Accueil");
+        mi.addActionListener(this);
         menuBar.add(menu);
         menu.add(mi);
         this.setJMenuBar(menuBar);  
@@ -59,10 +60,19 @@ public class MaFenetre extends JFrame {
     }
 
     public void setAbspano(Abstractpano abspano) {
-        this.abspano = abspano;
+        this.abspano = abspano;        
     }
 
     public Abstractpano getAbspano() {
         return abspano;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==mi){
+            this.setAbspano(new Vue_Pays(this));
+            this.setContentPane(this.getAbspano());
+            this.pack();
+        }
     }
 }
